@@ -8,7 +8,7 @@ A camera vision obstacle avoidance system is also available. The stereovision ca
 
 ROS Indigo is being used here
 
-The robot can be drived both with and without the camera
+The robot can be driven both with and without the camera
 
 Firstly the main program need to be launched which is the bi_bot.launch
 To make the robot move manually you can run the walker_demo.py
