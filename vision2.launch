@@ -1,0 +1,4 @@
+<launch>
+  <node name="obs_avoid" pkg="bi_bot" type="obs_avoid">
+  </node>
+</launch>

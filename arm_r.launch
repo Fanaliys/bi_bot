@@ -1,0 +1,58 @@
+<!-- Start tilt joint controller -->
+<launch>
+<node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+        <rosparam>
+            namespace: dxl_manager
+            serial_ports:
+                pan_tilt_port:
+                    port_name: "/dev/ttyUSB0"
+                    baud_rate: 1000000
+                    min_motor_id: 1
+                    max_motor_id: 18
+                    update_rate: 25
+        </rosparam>
+    </node>
+
+    <rosparam file="$(find bi_bot)/bi_bot_meta.yaml" command="load"/>
+    <node name="controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port pan_tilt_port
+                /typea/r_hip_twist_joint_position_controller
+                /typea/l_hip_twist_joint_position_controller
+                /typea/r_hip_lateral_joint_position_controller
+                /typea/l_hip_lateral_joint_position_controller
+                /typea/r_hip_swing_joint_position_controller
+                /typea/l_hip_swing_joint_position_controller
+                /typea/r_knee_joint_position_controller
+                /typea/l_knee_joint_position_controller
+                /typea/r_ankle_swing_joint_position_controller
+                /typea/l_ankle_swing_joint_position_controller
+                /typea/r_ankle_lateral_joint_position_controller
+                /typea/l_ankle_lateral_joint_position_controller                       
+                "
+          output="screen"/>
+
+	<node pkg="bi_bot" type="joint_state_aggregator" name="joint_state_aggregator">
+            <rosparam>
+                 rate: 50
+                 controllers:
+                      - /typea/r_hip_twist_joint_position_controller
+                      - /typea/l_hip_twist_joint_position_controller
+                      - /typea/r_hip_lateral_joint_position_controller
+                      - /typea/l_hip_lateral_joint_position_controller
+                      - /typea/r_hip_swing_joint_position_controller
+                      - /typea/l_hip_swing_joint_position_controller
+                      - /typea/r_knee_joint_position_controller
+                      - /typea/l_knee_joint_position_controller
+                      - /typea/r_ankle_swing_joint_position_controller
+                      - /typea/l_ankle_swing_joint_position_controller
+                      - /typea/r_ankle_lateral_joint_position_controller
+                      - /typea/l_ankle_lateral_joint_position_controller
+            </rosparam>
+            <remap from="/joint_states" to="/typea/joint_states" />
+        </node>
+
+        <node name="typea_walker" pkg="bi_bot" type="walker.py" output="screen"/>  
+          
+
+</launch>

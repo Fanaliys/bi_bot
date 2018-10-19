@@ -1,0 +1,54 @@
+def get(self,phase,x,velocity):
+	angles={}
+	if phase:
+		angles["l_hip_swing_joint"] = self.pfn["l_hip_swing_joint"].get(x)*0.95 		#0.95
+		angles["r_hip_swing_joint"] = self.pfn["r_hip_swing_joint"].get(x)
+		angles["l_hip_lateral_joint"] = -self.pfn["l_hip_lateral_joint"].get(x)*1.3 		#1.3
+		angles["r_hip_lateral_joint"] = -self.pfn["r_hip_lateral_joint"].get(x)*0.9 		#0.9
+		angles["l_knee_joint"] = -self.pfn["l_knee_joint"].get(x)*0.9 				#0.9
+		angles["r_knee_joint"] = -self.pfn["r_knee_joint"].get(x)
+		angles["l_ankle_swing_joint"] = self.pfn["l_ankle_swing_joint"].get(x)*0.95		#0.95
+		angles["r_ankle_swing_joint"] = self.pfn["r_ankle_swing_joint"].get(x)
+		angles["l_ankle_lateral_joint"] = -self.pfn["l_ankle_lateral_joint"].get(x)*1.05 	#1.05
+		angles["r_ankle_lateral_joint"] = -self.pfn["r_ankle_lateral_joint"].get(x)*1.05 	#1.05
+	else:
+		angles["l_hip_swing_joint"] = self.afn["l_hip_swing_joint"].get(x)
+		angles["r_hip_swing_joint"] = self.afn["r_hip_swing_joint"].get(x)*0.95 		#0.95
+		angles["l_hip_lateral_joint"] = -self.afn["l_hip_lateral_joint"].get(x)*0.9 		#0.9
+		angles["r_hip_lateral_joint"] = -self.afn["r_hip_lateral_joint"].get(x)*1.3 		#1.3
+		angles["l_knee_joint"] = -self.afn["l_knee_joint"].get(x)
+		angles["r_knee_joint"] = -self.afn["r_knee_joint"].get(x)*0.9 				#0.9
+		angles["l_ankle_swing_joint"] = self.afn["l_ankle_swing_joint"].get(x)
+		angles["r_ankle_swing_joint"] = self.afn["r_ankle_swing_joint"].get(x)*0.95		#0.95
+		angles["l_ankle_lateral_joint"] = -self.afn["l_ankle_lateral_joint"].get(x)*1.05 	#1.05
+		angles["r_ankle_lateral_joint"] = -self.afn["r_ankle_lateral_joint"].get(x)*1.05 	#1.05
+
+
+
+
+
+trying to get as close as original
+    def get(self,phase,x,velocity):
+	angles={}
+	if phase:
+		angles["l_hip_swing_joint"] = self.pfn["l_hip_swing_joint"].get(x)*0.95 				#0.95
+		angles["r_hip_swing_joint"] = self.pfn["r_hip_swing_joint"].get(x)
+		angles["l_hip_lateral_joint"] = -self.pfn["l_hip_lateral_joint"].get(x)*1.3 				#1.3
+		angles["r_hip_lateral_joint"] = -self.pfn["r_hip_lateral_joint"].get(x)*0.9 				#0.9
+		angles["l_knee_joint"] = (-self.pfn["l_knee_joint"].get(x)+0.2857)*0.7931 				#0.9
+		angles["r_knee_joint"] = (-self.pfn["r_knee_joint"].get(x)-0.2857)
+		angles["l_ankle_swing_joint"] = (self.pfn["l_ankle_swing_joint"].get(x)-0.14)*0.9645			#0.95
+		angles["r_ankle_swing_joint"] = (self.pfn["r_ankle_swing_joint"].get(x)+0.14)*0.8423
+		angles["l_ankle_lateral_joint"] = (-self.pfn["l_ankle_lateral_joint"].get(x)+0.02)*0.7693 		#1.05
+		angles["r_ankle_lateral_joint"] = (-self.pfn["r_ankle_lateral_joint"].get(x)-0.02)*0.5965 		#1.05
+	else:
+		angles["l_hip_swing_joint"] = self.afn["l_hip_swing_joint"].get(x)
+		angles["r_hip_swing_joint"] = self.afn["r_hip_swing_joint"].get(x)*0.95 				#0.95
+		angles["l_hip_lateral_joint"] = -self.afn["l_hip_lateral_joint"].get(x)*0.9 				#0.9
+		angles["r_hip_lateral_joint"] = -self.afn["r_hip_lateral_joint"].get(x)*1.3 				#1.3
+		angles["l_knee_joint"] = (-self.afn["l_knee_joint"].get(x)+0.2857)
+		angles["r_knee_joint"] = (-self.afn["r_knee_joint"].get(x)-0.2857)*0.7931 						#0.9
+		angles["l_ankle_swing_joint"] = (self.afn["l_ankle_swing_joint"].get(x)-0.14)*0.9645
+		angles["r_ankle_swing_joint"] = (self.afn["r_ankle_swing_joint"].get(x)+0.14)*0.8423				#0.95
+		angles["l_ankle_lateral_joint"] = (-self.afn["l_ankle_lateral_joint"].get(x)+0.02)*0.5965	 	#1.05
+		angles["r_ankle_lateral_joint"] = (-self.afn["r_ankle_lateral_joint"].get(x)-0.02)*0.7693 		#1.05
